@@ -23,6 +23,9 @@ spec:
   ports:
   - port: 1414
     name: qmgr
+    {{- if (not (empty .Values.route.nodePort.port.mqtraffic)) }}
+    nodePort: {{ .Values.route.nodePort.port.mqtraffic }}
+    {{- end }}
   selector:
 {{- include "ibm-mq.selectorLabels" . | nindent 4 }}
 {{- end }}
